@@ -13,22 +13,10 @@ class ABattleRoyaleCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(EditDefaultsOnly, Category=Mesh)
-	class USkeletalMeshComponent* Mesh1P;
-
-	/** Gun mesh: 1st person view (seen only by self) */
-	UPROPERTY(EditDefaultsOnly, Category = Mesh)
-	class USkeletalMeshComponent* FP_Gun;
-	
-	/** Gun mesh in 3rd person, seen by enemies */
-	UPROPERTY(EditDefaultsOnly, Category = Mesh)
-	class USkeletalMeshComponent* TP_Gun;
 
 	/** Location on gun mesh where projectiles should spawn. */
 	UPROPERTY(EditDefaultsOnly, Category = Mesh)
 	class USceneComponent* FP_MuzzleLocation;
-
 
 
 	/** First person camera */
@@ -42,6 +30,11 @@ public:
 
 protected:
 	virtual void BeginPlay();
+
+	/** Pawn mesh: 1st person view (arms; seen only by self) */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Mesh)
+		class USkeletalMeshComponent* Mesh1P;
+
 
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
@@ -72,6 +65,10 @@ public:
 
 protected:
 	
+
+
+
+
 	/** Fires a projectile. */
 	void OnFire();
 
@@ -125,6 +122,7 @@ public:
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
 
 };
 
